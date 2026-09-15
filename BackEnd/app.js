@@ -18,7 +18,7 @@ connnectDB()
 .catch((error) => {
     console.log("Something went wrong", error);
 });
- origin: app.use(cors({
+app.use(cors({
     origin: "https://ice-and-cake-8zie.vercel.app",
     credentials: true
 }));
