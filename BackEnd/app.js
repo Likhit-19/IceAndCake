@@ -19,7 +19,7 @@ connnectDB()
     console.log("Something went wrong", error);
 });
 app.use(cors({
-    origin:process.env.FRONTEND_URL||"http://localhost:5173",
+    origin:process.FRONTEND_URL||"http://localhost:5173",
     credentials:true,
 }));
 connectCloudinary();
