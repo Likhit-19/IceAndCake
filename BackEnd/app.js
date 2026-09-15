@@ -18,12 +18,9 @@ connnectDB()
 .catch((error) => {
     console.log("Something went wrong", error);
 });
-app.use(cors({
-    origin: app.use(cors({
+ origin: app.use(cors({
     origin: "https://ice-and-cake-8zie.vercel.app",
     credentials: true
-})),
-    credentials: true,
 }));
 connectCloudinary();
 
