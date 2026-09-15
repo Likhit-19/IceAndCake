@@ -13,12 +13,16 @@ const productSchema= new mongoose.Schema({
         type:String,
         required:true,
     },
+    describe:
+    {
+        type:String,
+    },
     imageUrl:{
         type:String,
         required:true,
     }
 
-});
+},{timestamps:true});
  
   const  Product=mongoose.model("product",productSchema);
 

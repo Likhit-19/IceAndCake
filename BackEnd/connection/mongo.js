@@ -1,9 +1,9 @@
 const mongoose=require('mongoose');
 
-async function connnectDB(url)
+async function connnectDB()
 {
      try{
-        await mongoose.connect(url);
+        await mongoose.connect(process.env.MONGO_URL);
         
      }catch(error)
      {

@@ -3,7 +3,7 @@ import {signupAction} from './components/SignForm';
 import Dashboard from  "./Page/Dashboard";
 import AddProduct from "./Page/AddProduct";
 import Cart from "./Page/Cart";
-import SignPage from './Page/SignupPage';
+import SignupPage from './Page/SignupPage';
 import {addProductAction} from "./components/AddProductForm";
 import {loginAction} from "./components/LoginForm";
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
@@ -28,7 +28,7 @@ export default function App() {
     },
     {
       path:'signup',
-      element:<SignPage/>,
+      element:<SignupPage/>,
       action:signupAction,
     },
    

@@ -20,6 +20,9 @@ export default function AddProductForm({ formName }) {
                         <div className="mb-6 p-3">
                          <Input name="category" type="text" label="Category"/>
                         </div>
+                          <div className="mb-6 p-3">
+                         <Input name="describe" type="text" label="Description"/>
+                        </div>
                          <div className="mb-6 p-3">
                          <Input name="image" type="file" label="Image"/>
                         </div>
