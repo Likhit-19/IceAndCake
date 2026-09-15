@@ -19,7 +19,10 @@ connnectDB()
     console.log("Something went wrong", error);
 });
 app.use(cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:5173",
+    origin: app.use(cors({
+    origin: "https://ice-and-cake-8zie.vercel.app",
+    credentials: true
+})),
     credentials: true,
 }));
 connectCloudinary();
