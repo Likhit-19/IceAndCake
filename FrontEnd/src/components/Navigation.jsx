@@ -12,7 +12,7 @@ export default function Navigation() {
     }
 
     async function handleRedirectLogout() {
-        const response = await fetch("http://localhost:8000/user/logout", {
+        const response = await fetch("https://ice-and-cake-hqaygp2k5-alpha-abd3.vercel.app/user/logout", {
             credentials: "include",
         });
         if (response.ok) navigate("/user/login");

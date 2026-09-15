@@ -1,6 +1,6 @@
 export  async function getCurrentUser(){
     const response= await fetch(
-        "http://localhost:8000/user/auth",
+        "https://ice-and-cake-hqaygp2k5-alpha-abd3.vercel.app/user/auth",
         {
             credentials:"include"
         }
