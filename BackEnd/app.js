@@ -7,7 +7,7 @@ const cors = require("cors");
 const { connectCloudinary } = require("./connection/cloudinary");
 const productRoute = require("./route/product");
 const { connnectDB } = require("./connection/mongo");
-
+const paymentRoute=require("./route/payment");
 const app = express();
 
 // CORS should come first
@@ -37,5 +37,6 @@ app.use(async (req, res, next) => {
 
 app.use("/user", userRoute);
 app.use("/Home", productRoute);
+app.use("/payment",paymentRoute);
 
 module.exports = app;
