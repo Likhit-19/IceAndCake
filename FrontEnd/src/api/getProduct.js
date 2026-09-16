@@ -7,6 +7,6 @@ export async function getProduct()
     {
         console.log("Data fetched Successfully!");
     }
-    const data=response.json();
+    const data=await response.json();
     return data;
 }
