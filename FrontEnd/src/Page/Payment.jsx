@@ -39,6 +39,7 @@ export default function Payment() {
 
             // 2. Razorpay Checkout
             const options = {
+
                 key: "rzp_test_TcfxAwAlqQIY62",
 
                 amount: data.order.amount,
@@ -58,10 +59,13 @@ export default function Payment() {
                         "https://ice-and-cake.vercel.app/payment/verify",
                         {
                             method: "POST",
+
                             headers: {
                                 "Content-Type": "application/json"
                             },
+
                             credentials: "include",
+
                             body: JSON.stringify(response)
                         }
                     );
@@ -70,9 +74,13 @@ export default function Payment() {
                         await verifyResponse.json();
 
                     if (result.success) {
+
                         alert("Payment Successful!");
+
                     } else {
+
                         alert("Payment verification failed");
+
                     }
                 },
 
@@ -81,7 +89,8 @@ export default function Payment() {
                 }
             };
 
-            const razorpay = new window.Razorpay(options);
+            const razorpay =
+                new window.Razorpay(options);
 
             razorpay.open();
 
@@ -90,6 +99,7 @@ export default function Payment() {
             console.log(error);
 
             alert("Something went wrong");
+
         }
     }
 
@@ -127,7 +137,9 @@ export default function Payment() {
 
                 <div className="flex justify-between mt-8 text-xl font-bold">
 
-                    <span>Total</span>
+                    <span>
+                        Total
+                    </span>
 
                     <span className="text-pink-500">
                         ₹{total}
