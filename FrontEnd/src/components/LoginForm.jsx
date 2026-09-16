@@ -31,7 +31,7 @@ export async function loginAction({ request }) {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
     console.log(data);
-    const response = await fetch( "https://ice-and-cake-hqaygp2k5-alpha-abd3.vercel.app/user/login",
+    const response = await fetch( "https://ice-and-cake.vercel.app/user/login",
         {
             method: "POST",
             headers:
