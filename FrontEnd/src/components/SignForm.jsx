@@ -32,7 +32,7 @@ export async function signupAction({ request }) {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
     console.log(data);
-    const response = await fetch("https://ice-and-cake-hqaygp2k5-alpha-abd3.vercel.app/user/signup",
+    const response = await fetch("https://ice-and-cake.vercel.app/user/signup",
         {
             method: "POST",
             headers:

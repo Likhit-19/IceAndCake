@@ -1,7 +1,7 @@
 export async function getProduct()
 {
  const response= await fetch(
-        "https://ice-and-cake-hqaygp2k5-alpha-abd3.vercel.app/Home"
+        "https://ice-and-cake.vercel.app/Home"
 
     );
     if(response.ok)

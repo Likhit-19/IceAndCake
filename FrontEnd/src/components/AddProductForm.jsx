@@ -37,7 +37,7 @@ export default function AddProductForm({ formName }) {
 export async function addProductAction({ request }) {
     const formData = await request.formData();
    
-    const response = await fetch("https://ice-and-cake-hqaygp2k5-alpha-abd3.vercel.app/Home/addProduct",
+    const response = await fetch("https://ice-and-cake.vercel.app/Home/addProduct",
         {
             method: "POST",
             body: formData,
