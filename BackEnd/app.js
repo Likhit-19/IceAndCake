@@ -10,13 +10,15 @@ const app=express();
 const {connnectDB}=require('./connection/mongo');
 
 const PORT=process.env.PORT || 8000;
-connnectDB()
-.then(()=>
-{
-    console.log("MongoDB is connected");
-})
-.catch((error) => {
-    console.log("Something went wrong", error);
+app.use(async (req, res, next) => {
+    try {
+        await connnectDB();
+        next();
+    } catch (error) {
+        res.status(500).json({
+            message: "Database connection failed"
+        });
+    }
 });
 app.use(cors({
     origin: "https://ice-and-cake-8zie.vercel.app",
