@@ -62,6 +62,8 @@ async function handleLogin(req,res)
      res.cookie("Uid",token,
         {
             httpOnly:true,
+            secure:true,
+            sameSite:"none",
         }
      );
      res.json({message:"Login Successful"});
@@ -83,12 +85,21 @@ async function handleFrontendAuth(req,res)
    }catch(error)
    {
      console.log("something occured",error);
+      return res.status(401).json({
+        message: "Invalid or expired token"
+    });
    }
 }
 
 function handleLogout(req,res)
 {
-    res.clearCookie("Uid").json({message:"Logged out successfully"});
+    res.clearCookie("Uid",
+        {
+          httpOnly: true,
+        secure: true,
+        sameSite: "none",  
+        }
+    ).json({message:"Logged out successfully"});
 
 }
 module.exports={handleSingup,handleLogin,handleFrontendAuth,handleLogout};
