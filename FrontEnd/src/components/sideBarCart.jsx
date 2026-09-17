@@ -1,11 +1,13 @@
 import {useSelector}  from "react-redux";
 import {useDispatch} from "react-redux";
+import {useAuth} from "../api/authApi";
 import {useNavigate} from "react-router-dom";
 import {addToCart,removeFromCart} from "../store/cartSlice";
 export default function Cart() {
     const navigate=useNavigate();
     const cartItems= useSelector((state)=>state.cart.items);
     const dispatch=useDispatch();
+    const { data, isLoading } = useAuth();
 
     return (
         <div className="absolute right-34 top-14 w-92 bg-white shadow-2xl p-6 z-50  rounded-2xl">
@@ -50,14 +52,23 @@ export default function Cart() {
                     </li>
                 ))}
             </ul>
-            <button
+             {data?.user ? <button
                 className="w-full mt-4 bg-pink-500
                 text-white py-2 rounded-xl
                 font-semibold hover:bg-pink-600"
                 onClick={()=>navigate("/cart")}
             >
-                Proceed
-            </button>
+               Proceed
+            </button>:
+            <button
+                className="w-full mt-4 bg-pink-500
+                text-white py-2 rounded-xl
+                font-semibold hover:bg-pink-600"
+                onClick={()=>navigate("/user/login")}
+            >
+               login
+            </button>}
+            
 
         </div>
     );
