@@ -1,6 +1,6 @@
 import {useSelector}  from "react-redux";
 import {useDispatch} from "react-redux";
-import {useAuth} from "../api/authApi";
+import { useAuth } from "../hooks/useAuth";
 import {useNavigate} from "react-router-dom";
 import {addToCart,removeFromCart} from "../store/cartSlice";
 export default function Cart() {
