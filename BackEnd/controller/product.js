@@ -51,4 +51,46 @@ async function handleAddProduct(req,res)
 
 }
 
-module.exports={getAllProduct,handleAddProduct};
+async function getAllIceCream(req, res) {
+    try {
+        console.log("DB NAME:", mongoose.connection.name);
+        console.log("DB HOST:", mongoose.connection.host);
+
+        const products = await Product.find({category:Cake});
+
+        console.log("PRODUCT COUNT:", products.length);
+
+        res.status(200).json(products);
+
+    } catch (error) {
+        console.log("FETCH ERROR:", error);
+
+        res.status(500).json({
+            message: "failed to fetch products",
+            error: error.message
+        });
+    }
+}
+
+async function getAllCake(req, res) {
+    try {
+        console.log("DB NAME:", mongoose.connection.name);
+        console.log("DB HOST:", mongoose.connection.host);
+
+        const products = await Product.find({category:IceCream});
+
+        console.log("PRODUCT COUNT:", products.length);
+
+        res.status(200).json(products);
+
+    } catch (error) {
+        console.log("FETCH ERROR:", error);
+
+        res.status(500).json({
+            message: "failed to fetch products",
+            error: error.message
+        });
+    }
+}
+
+module.exports={getAllProduct,handleAddProduct,getAllIceCream,getAllCake};

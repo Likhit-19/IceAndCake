@@ -1,153 +1,253 @@
-
 import { useProduct } from "../hooks/useProduct";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../store/cartSlice";
+import LandingPage from "../components/LandingPageIMG";
 
 export default function Datagrid() {
     const { data = [], isLoading, isError } = useProduct();
     const dispatch = useDispatch();
 
+    function handleAddItem(item) {
+        dispatch(addToCart(item));
+    }
+
     if (isLoading) {
         return (
-            <div className="w-full p-6 text-center">
-                Loading products...
+            <div className="min-h-screen flex items-center justify-center">
+                <p className="text-gray-600">
+                    Loading products...
+                </p>
             </div>
         );
     }
 
     if (isError) {
         return (
-            <div className="w-full p-6 text-center text-red-500">
-                Failed to load products.
+            <div className="min-h-screen flex items-center justify-center">
+                <p className="text-red-500">
+                    Failed to load products.
+                </p>
             </div>
         );
     }
 
-    function handleAddItem(item) {
-        dispatch(addToCart(item));
-    }
-
     return (
-        <div className="w-full p-6">
-            <ul className="grid grid-cols-4 gap-8">
-                {data.map((product) => (
-                    <li
-                        key={product._id}
-                        className="
-                            bg-white
-                            rounded-2xl
-                            border border-pink-100
-                            shadow-md
-                            p-5
-                            hover:shadow-xl
-                            hover:-translate-y-1
-                            transition-all duration-300
-                            flex flex-col
-                            h-[430px]
-                        "
-                    >
-                        {/* Image */}
-                        <div
+        <div className="w-full bg-white">
+
+            {/* Navbar + Hero + Categories */}
+            <LandingPage />
+
+            {/* ================= PRODUCTS ================= */}
+            <section
+                id="products"
+                className="max-w-[1400px] mx-auto px-6 py-10"
+            >
+
+                {/* Heading */}
+                <div className="
+                    flex
+                    justify-between
+                    items-end
+                    mb-8
+                ">
+
+                    <div>
+                        <h2 className="
+                            text-3xl
+                            md:text-4xl
+                            font-bold
+                            text-[#3b1712]
+                        ">
+                            Featured Products
+                        </h2>
+
+                        <p className="
+                            text-gray-500
+                            mt-2
+                        ">
+                            Our most loved cakes and ice creams,
+                            handpicked for you.
+                        </p>
+                    </div>
+
+                    <button className="
+                        hidden
+                        md:block
+                        border
+                        border-pink-500
+                        text-pink-500
+                        px-5
+                        py-2
+                        rounded-xl
+                        hover:bg-pink-500
+                        hover:text-white
+                        transition
+                    ">
+                        View All →
+                    </button>
+
+                </div>
+
+
+                {/* Product Grid */}
+                <ul className="
+                    grid
+                    grid-cols-1
+                    sm:grid-cols-2
+                    lg:grid-cols-3
+                    xl:grid-cols-4
+                    gap-6
+                    list-none
+                    p-0
+                    m-0
+                ">
+
+                    {data.map((product) => (
+
+                        <li
+                            key={product._id}
                             className="
-                                h-60 w-70
-                                mx-auto
-                                bg-pink-50
-                                rounded-xl
-                                overflow-hidden
-                                flex justify-center items-center
-                                shrink-0
+                                bg-white
+                                rounded-2xl
+                                border
+                                border-gray-100
                                 shadow-sm
+                                overflow-hidden
+                                hover:shadow-xl
+                                transition-all
+                                duration-300
+                                group
                             "
                         >
-                            <img
-                                src={product.imageUrl}
-                                alt={product.name}
-                                className="
-                                    h-full w-full
-                                    object-cover
-                                    rounded-xl
-                                    hover:scale-105
-                                    transition-transform duration-300
-                                "
-                            />
-                        </div>
 
-                        {/* Details */}
-                        <div className="mt-4 flex flex-col flex-1">
-
-                            {/* Product name */}
-                            <h2 className="
-                                text-xl
-                                font-bold
-                                text-gray-800
-                                line-clamp-1
+                            {/* Image */}
+                            <div className="
+                                relative
+                                h-56
+                                overflow-hidden
+                                bg-pink-50
                             ">
-                                {product.name}
-                            </h2>
 
-                            {/* Description */}
-                            <p
-                                className="
-                                    text-gray-500
+                                <img
+                                    src={product.imageUrl}
+                                    alt={product.name}
+                                    className="
+                                        w-full
+                                        h-full
+                                        object-cover
+                                        group-hover:scale-105
+                                        transition-transform
+                                        duration-500
+                                    "
+                                />
+
+                                {/* Heart */}
+                                <button className="
+                                    absolute
+                                    top-3
+                                    right-3
+                                    w-9
+                                    h-9
+                                    bg-white
+                                    rounded-full
+                                    shadow
+                                    flex
+                                    items-center
+                                    justify-center
+                                    text-lg
+                                ">
+                                    ♡
+                                </button>
+
+                            </div>
+
+
+                            {/* Content */}
+                            <div className="p-4">
+
+                                <h3 className="
+                                    text-lg
+                                    font-semibold
+                                    text-gray-800
+                                ">
+                                    {product.name}
+                                </h3>
+
+
+                                <p className="
                                     text-sm
-                                    mt-2
-                                    line-clamp-3
-                                    leading-5
-                                    min-h-[30px]
-                                "
-                            >
-                                {product.describe}
-                            </p>
+                                    text-gray-400
+                                    mt-1
+                                ">
+                                    {product.category || "Desserts"}
+                                </p>
 
-                            {/* Price + Button */}
-                            <div
-                                className="
+
+                                <div className="
                                     flex
                                     justify-between
                                     items-center
-                                    pt-4
-                                    border-t
-                                    border-pink-100
-                                "
-                            >
-                                <div>
-                                    <p className="text-xs text-gray-400">
-                                        Price
-                                    </p>
+                                    mt-3
+                                ">
+
+                                    <div>
+                                        <span className="
+                                            text-yellow-400
+                                        ">
+                                            ★
+                                        </span>
+
+                                        <span className="
+                                            text-sm
+                                            text-gray-500
+                                            ml-1
+                                        ">
+                                            4.8
+                                        </span>
+                                    </div>
 
                                     <span className="
-                                        text-xl
+                                        text-lg
                                         font-bold
-                                        text-pink-500
+                                        text-[#3b1712]
                                     ">
                                         ₹{product.price}
                                     </span>
+
                                 </div>
 
+
+                                {/* Add Cart */}
                                 <button
-                                    onClick={() => handleAddItem(product)}
+                                    onClick={() =>
+                                        handleAddItem(product)
+                                    }
                                     className="
+                                        w-full
+                                        mt-4
                                         bg-pink-500
                                         text-white
-                                        px-4 py-2
+                                        py-3
                                         rounded-xl
                                         font-semibold
-                                        shadow-sm
                                         hover:bg-pink-600
-                                        hover:shadow-md
-                                        active:scale-95
-                                        transition-all
-                                        duration-200
+                                        active:scale-[0.98]
+                                        transition
                                     "
                                 >
-                                    Add to Cart
+                                    🛒 Add to Cart
                                 </button>
+
                             </div>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+
+                        </li>
+
+                    ))}
+
+                </ul>
+
+            </section>
+
         </div>
     );
 }
-

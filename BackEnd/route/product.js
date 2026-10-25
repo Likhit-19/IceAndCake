@@ -5,5 +5,6 @@ const {getAllProduct,handleAddProduct}=require("../controller/product");
 
 router.get("/",getAllProduct);
 router.post("/addProduct",upload.single("image"),handleAddProduct);
-
+router.get("/IceCream",getAllIceCream);
+router.get("/Cake",getAllCake);
 module.exports=router;
