@@ -27,29 +27,49 @@ export default function AutheForm({ formName }) {
         </div>);
 }
 
+
 export async function loginAction({ request }) {
     const formData = await request.formData();
     const data = Object.fromEntries(formData);
-    console.log(data);
-    const response = await fetch( "https://ice-and-cake.vercel.app/user/login",
-        {
-            method: "POST",
-            headers:
+
+    try {
+        const response = await fetch(
+            "https://ice-and-cake.vercel.app/user/login",
             {
-                "Content-Type": "application/json",
-            },
-            credentials: "include",
-            body: JSON.stringify(data),
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: "include",
+                body: JSON.stringify(data),
+            }
+        );
+
+        // Read the response as text first to avoid JSON parsing errors.
+        const text = await response.text();
+
+        let result;
+        try {
+            result = JSON.parse(text);
+        } catch {
+            console.error("Server returned non-JSON:", text);
+            return {
+                message: `Server returned an invalid response (HTTP ${response.status}). Check the API URL and backend logs.`
+            };
         }
 
+        if (response.ok) {
+            return redirect("/");
+        }
 
-    );
-    const result = await response.json();
-    if (response.ok) {
-        return redirect("/");
+        return {
+            message: result.message || `Login failed (HTTP ${response.status})`
+        };
+    } catch (error) {
+        console.error("Login request failed:", error);
+
+        return {
+            message: "Unable to connect to the server. Please try again."
+        };
     }
-
-    return {
-        message: result.message
-    };
 }
