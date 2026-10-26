@@ -1,5 +1,5 @@
 import { Form } from "react-router-dom";
-import { redirect, useActionData } from "react-router-dom";
+import { redirect, useActionData,NavLink} from "react-router-dom";
 import Input from "./Input";
 export default function AutheForm({ formName }) {
     const error = useActionData();
