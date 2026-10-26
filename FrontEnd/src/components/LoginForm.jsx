@@ -22,8 +22,17 @@ export default function AutheForm({ formName }) {
                 <div className="mb-6">
                     <button className="border border-gray-500 rounded-md bg-pink-200 w-full">-- Login --</button>
                 </div>
+                <div className="flex justify-end text-sm mt-3">
+                    <NavLink
+                        to="/user/signup"
+                        className="text-pink-600 hover:text-pink-800 font-semibold transition-colors"
+                    >
+                        Sign up →
+                    </NavLink>
+                </div>
 
             </Form>
+            
         </div>);
 }
 
