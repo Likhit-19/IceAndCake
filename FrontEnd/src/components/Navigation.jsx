@@ -37,19 +37,19 @@ export default function Navigation() {
 
                 <li>
                     <a href="#" className="hover:text-pink-100 transition">
-                        Cake
+                        Profile
                     </a>
                 </li>
 
                 <li>
                     <a href="#" className="hover:text-pink-100 transition">
-                        Ice-Cream
+                        History
                     </a>
                 </li>
                 {data?.user?.role=="Admin"&&(
                      <li>
                     <a href="#" className="hover:text-pink-100 transition">
-                        Add-Product
+                        About
                     </a>
                 </li>
                 )}
